@@ -16,23 +16,45 @@ INSERT INTO public.buildings(
 ```
 
 ## People
+### Create Table
 ```sql
-INSERT INTO public.people (id, firstname, lastname, role) VALUES
-(1, 'Alice', 'Smith', 'Tenant'),
-(2, 'Bob', 'Johnson', 'Tenant'),
-(3, 'Charlie', 'Williams', 'Tenant'),
-(4, 'David', 'Brown', 'Tenant'),
-(5, 'Eve', 'Davis', 'Tenant'),
-(6, 'Frank', 'Miller', 'Tenant'),
-(7, 'Grace', 'Wilson', 'Tenant'),
-(8, 'Henry', 'Moore', 'Tenant'),
-(9, 'Ivy', 'Taylor', 'Tenant'),
-(10, 'Jack', 'Anderson', 'Tenant'),
-(11, 'Karen', 'Thomas', 'Manager'),
-(12, 'Liam', 'Jackson', 'Manager'),
-(13, 'Mia', 'White', 'Manager'),
-(14, 'Noah', 'Harris', 'Manager'),
-(15, 'Olivia', 'Martin', 'Manager');
+-- Table: public.people
+
+-- DROP TABLE IF EXISTS public.people;
+
+CREATE TABLE IF NOT EXISTS public.people
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    firstname text COLLATE pg_catalog."default",
+    lastname text COLLATE pg_catalog."default",
+    age integer,
+    role text COLLATE pg_catalog."default",
+    CONSTRAINT people_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.people
+    OWNER to admin;
+```
+### Insert
+```sql
+INSERT INTO public.people (firstname, lastname, age, role) VALUES
+('Alice', 'Smith', 30, 'Tenant'),
+('Bob', 'Johnson', 25, 'Tenant'),
+('Charlie', 'Williams', 35, 'Manager'),
+('David', 'Brown', 28, 'Tenant'),
+('Eve', 'Davis', 40, 'Manager'),
+('Frank', 'Miller', 32, 'Tenant'),
+('Grace', 'Wilson', 27, 'Tenant'),
+('Henry', 'Moore', 38, 'Manager'),
+('Ivy', 'Taylor', 29, 'Tenant'),
+('Jack', 'Anderson', 33, 'Tenant'),
+('Karen', 'Thomas', 42, 'Manager'),
+('Liam', 'Jackson', 26, 'Tenant'),
+('Mia', 'White', 31, 'Tenant'),
+('Noah', 'Harris', 36, 'Manager'),
+('Olivia', 'Martin', 29, 'Tenant');
 ```
 
 ## Rooms
