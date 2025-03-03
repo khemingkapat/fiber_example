@@ -15,6 +15,7 @@ services:
     restart: unless-stopped
 
   go-fiber-app:
+    container_name: fiber
     platform: linux/arm64
     build:
       context: .  # Assuming Dockerfile is in the same directory as docker-compose.yml
