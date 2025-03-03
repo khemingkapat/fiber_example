@@ -3,6 +3,7 @@ this would be my note of my learning
 - use `go get -u <module_name>` to get and update module in `go.mod`
 - most code come from [mikelopster's tutorial](https://docs.mikelopster.dev/c/goapi-essential/chapter-3/crud). I'll try to extend it for my own variant(for learning)
 - to connect dockerized postgres to desktop pgAdmin, use hostname as `127.0.0.1`
+- to connect it, use port `5430` since the port `5432` is taken by postgres installed by my `home-manager`(at this time)
 
 # Script to create DB
 ## Buildings

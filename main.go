@@ -1,13 +1,34 @@
 package main
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"database/sql"
+	"fmt"
+	"log"
+
+	_ "github.com/lib/pq"
+)
 
 func main() {
-	app := fiber.New()
+	// Connection string (hardcoded credentials)
+	connStr := "user=admin password=adminpassword dbname=dorm host=localhost port=5430 sslmode=disable"
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
+	// Open a connection to the database
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
 
-	app.Listen(":8080")
+	// Ping the database to verify the connection
+	err = db.Ping()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Successfully connected to the database!")
+
+	// You can now perform database operations using the 'db' object
+	// Example:
+	// rows, err := db.Query("SELECT * FROM your_table")
+	// ...
 }
