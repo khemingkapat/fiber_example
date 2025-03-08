@@ -1,52 +1,26 @@
 package main
 
 import (
-	"errors"
-	"fmt"
-	"log"
-
-	// "github.com/gofiber/fiber/v2"
-	// "github.com/khemingkapat/fiber_example/handlers"
-	// "github.com/khemingkapat/fiber_example/objects"
+	"github.com/gofiber/fiber/v2"
+	"github.com/khemingkapat/fiber_example/handlers"
 	"github.com/khemingkapat/fiber_example/queries"
 )
 
 func main() {
-	conn_str, err := connStrSelect("localhost")
-	if err != nil {
-		panic("invalid mode")
-	}
-	db, err := queries.InitDB(conn_str)
-	if err != nil {
-		log.Fatal(err)
-	}
+	conn_str := connStrSelect("localhost")
+	db := queries.InitDB(conn_str)
 
-	currPerson := queries.GetPerson(db, 1)
-	fmt.Println(currPerson)
+	app := fiber.New()
 
-	people := queries.GetPeople(db)
-	fmt.Println(people)
+	app.Get("/people", handlers.GetPeopleHandler(db))
 
-	currPerson.Firstname = "New Name"
-	queries.UpdatePerson(db, currPerson)
+	app.Get("/people/:id", handlers.GetPersonHandler(db))
 
-	queries.DeletePerson(db, 5)
-}
+	app.Post("/people", handlers.CreatePersonHandler(db))
 
-func connStrSelect(mode string) (string, error) {
-	var host string
-	var port int
+	app.Put("/people/:id", handlers.UpdatePersonHandler(db))
 
-	if mode == "postgres" {
-		host = "postgres"
-		port = 5432
-	} else if mode == "localhost" {
-		host = "localhost"
-		port = 5430
-	} else {
-		return "", errors.New("invalid mode")
-	}
+	app.Delete("/people/:id", handlers.DeletePersonHandler(db))
 
-	result := fmt.Sprintf("user=admin password=admin dbname=dorm host=%s port=%d sslmode=disable", host, port)
-	return result, nil
+	app.Listen(":8080")
 }
