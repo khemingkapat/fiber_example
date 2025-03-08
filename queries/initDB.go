@@ -9,9 +9,7 @@ import (
 
 var DB *sql.DB
 
-func InitDB() (*sql.DB, error) { // Corrected function signature
-	connStr := "user=admin password=admin dbname=dorm host=localhost port=5430 sslmode=disable"
-
+func InitDB(connStr string) (*sql.DB, error) { // Corrected function signature
 	// Open a connection to the database
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
