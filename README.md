@@ -73,3 +73,7 @@ INSERT INTO public.rooms (id, room_number, building_id, type, floor, tenant_id) 
 ```
 
 
+# ORM Approach
+using ORM is to represent relation(table) as a object in Go. Then the library will help convert it to be relation and deal with db for us.
+
+now we don't need to create table by our own. We will be using **Migration** to create table from object
