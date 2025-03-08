@@ -14,7 +14,7 @@ func GetPeople(db *gorm.DB) []object.Person {
 	result := db.Find(&people)
 
 	if err := result.Error; err != nil {
-		log.Fatalf("Error Getting People : %v", err)
+		log.Printf("Error Getting People : %v", err)
 		return nil
 	}
 

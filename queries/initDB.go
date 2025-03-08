@@ -13,7 +13,7 @@ import (
 
 var db *gorm.DB
 
-func InitDB(connStr string) (*gorm.DB, error) { // Corrected function signature
+func InitDB(connStr string) *gorm.DB { // Corrected function signature
 	// Open a connection to the database
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
@@ -33,5 +33,5 @@ func InitDB(connStr string) (*gorm.DB, error) { // Corrected function signature
 
 	db.AutoMigrate(&object.Person{})
 
-	return db, nil
+	return db
 }

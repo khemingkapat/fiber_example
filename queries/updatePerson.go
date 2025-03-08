@@ -1,21 +1,15 @@
 package queries
 
 import (
-	"fmt"
-	"log"
-
 	"github.com/khemingkapat/fiber_example/objects"
 	"gorm.io/gorm"
 )
 
-func UpdatePerson(db *gorm.DB, person *object.Person) {
+func UpdatePerson(db *gorm.DB, person *object.Person) error {
 	result := db.Save(&person)
 
 	if err := result.Error; err != nil {
+		return err
 	}
-
-	if err := result.Error; err != nil {
-		log.Fatalf("Error Updating Person : %v", err)
-	}
-	fmt.Println("Person Updated")
+	return nil
 }
