@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
@@ -11,8 +10,8 @@ import (
 )
 
 func main() {
-	fmt.Println("Successfully connected to the database!")
-	db, err := queries.InitDB()
+	connStr := "user=admin password=admin dbname=dorm host=postgres port=5432 sslmode=disable"
+	db, err := queries.InitDB(connStr)
 	if err != nil {
 		log.Println(err)
 	}
