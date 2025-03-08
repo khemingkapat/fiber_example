@@ -2,7 +2,6 @@ package queries
 
 import (
 	"database/sql"
-
 	"github.com/khemingkapat/fiber_example/common"
 )
 
