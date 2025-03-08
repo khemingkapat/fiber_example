@@ -77,3 +77,8 @@ INSERT INTO public.rooms (id, room_number, building_id, type, floor, tenant_id) 
 using ORM is to represent relation(table) as a object in Go. Then the library will help convert it to be relation and deal with db for us.
 
 now we don't need to create table by our own. We will be using **Migration** to create table from object
+
+## Migration
+in this example, we would use `db.AutoMigration` from `gorm`, but I suggest(myself) to do more research on **Migration** since there a lot behind the AutoMigration
+
+this will do the job for now but not forever

@@ -1,27 +1,37 @@
 package queries
 
 import (
-	"database/sql"
 	"log"
+	"os"
+	"time"
 
-	_ "github.com/lib/pq"
+	object "github.com/khemingkapat/fiber_example/objects"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
-var DB *sql.DB
+var db *gorm.DB
 
-func InitDB(connStr string) (*sql.DB, error) { // Corrected function signature
+func InitDB(connStr string) (*gorm.DB, error) { // Corrected function signature
 	// Open a connection to the database
-	db, err := sql.Open("postgres", connStr)
+	newLogger := logger.New(
+		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
+		logger.Config{
+			SlowThreshold: time.Second, // Slow SQL threshold
+			LogLevel:      logger.Info, // Log level
+			Colorful:      true,        // Enable color
+		},
+	)
+
+	db, err := gorm.Open(postgres.Open(connStr), &gorm.Config{
+		Logger: newLogger, // add Logger
+	})
 	if err != nil {
-		log.Fatal(err)
-		return nil, err
+		panic("DB Initialize Fail")
 	}
 
-	// Ping the database to verify the connection
-	if err := db.Ping(); err != nil {
-		log.Fatal(err)
-		return nil, err
-	}
+	db.AutoMigrate(&object.Person{})
 
 	return db, nil
 }
