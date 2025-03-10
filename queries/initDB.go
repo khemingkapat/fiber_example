@@ -5,7 +5,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/khemingkapat/fiber_example/auth"
 	"github.com/khemingkapat/fiber_example/objects"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -32,7 +31,7 @@ func InitDB(connStr string) *gorm.DB { // Corrected function signature
 		panic("DB Initialize Fail")
 	}
 
-	db.AutoMigrate(&object.Person{}, &auth.User{})
+	db.AutoMigrate(&object.Building{}, &object.Room{}, &object.User{})
 
 	return db
 }

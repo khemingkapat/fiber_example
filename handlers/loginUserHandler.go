@@ -5,12 +5,13 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/khemingkapat/fiber_example/auth"
+	object "github.com/khemingkapat/fiber_example/objects"
 	"gorm.io/gorm"
 )
 
 func LoginUserHandler(db *gorm.DB) fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		user := new(auth.User)
+		user := new(object.UserLogin)
 
 		if err := c.BodyParser(user); err != nil {
 			return c.Status(fiber.StatusBadRequest).SendString(err.Error())

@@ -4,7 +4,6 @@ this would be my note of my learning
 - most code come from [mikelopster's tutorial](https://docs.mikelopster.dev/c/goapi-essential/chapter-3/crud). I'll try to extend it for my own variant(for learning)
 - to connect dockerized postgres to desktop pgAdmin, use hostname as `127.0.0.1`
 - to connect it, use port `5430` since the port `5432` is taken by postgres installed by my `home-manager`(at this time)
-- right now, everything is working as intended. You might see something that is like weird. That's because poor planning. This is only example so nothing serious about this
 
 
 # ORM Approach

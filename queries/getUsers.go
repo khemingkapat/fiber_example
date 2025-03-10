@@ -8,8 +8,8 @@ import (
 	"github.com/khemingkapat/fiber_example/objects"
 )
 
-func GetPeople(db *gorm.DB) []object.Person {
-	var people []object.Person
+func GetUsers(db *gorm.DB) []object.User {
+	var people []object.User
 
 	result := db.Find(&people)
 

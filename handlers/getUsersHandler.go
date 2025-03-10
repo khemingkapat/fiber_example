@@ -6,8 +6,8 @@ import (
 	"gorm.io/gorm"
 )
 
-func GetPeopleHandler(db *gorm.DB) fiber.Handler {
+func GetUsersHandler(db *gorm.DB) fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		return c.JSON(queries.GetPeople(db))
+		return c.JSON(queries.GetUsers(db))
 	}
 }

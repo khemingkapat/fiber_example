@@ -5,11 +5,12 @@ import (
 	"gorm.io/gorm"
 )
 
-func UpdatePerson(db *gorm.DB, person *object.Person) error {
-	result := db.Save(&person)
+func DeleteUser(db *gorm.DB, id uint) error {
+	result := db.Delete(&object.User{}, id)
 
 	if err := result.Error; err != nil {
 		return err
 	}
+
 	return nil
 }

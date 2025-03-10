@@ -1,11 +1,14 @@
 package auth
 
 import (
+	object "github.com/khemingkapat/fiber_example/objects"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
 
-func CreateUser(db *gorm.DB, user *User) error {
+var jwtSecretKey string = "mysecretkey"
+
+func CreateUser(db *gorm.DB, user *object.User) error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return err

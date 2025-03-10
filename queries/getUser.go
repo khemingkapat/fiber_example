@@ -5,8 +5,8 @@ import (
 	"gorm.io/gorm"
 )
 
-func GetPerson(db *gorm.DB, id uint) (*object.Person, error) {
-	var person object.Person
+func GetUser(db *gorm.DB, id uint) (*object.User, error) {
+	var person object.User
 	result := db.First(&person, id)
 
 	if err := result.Error; err != nil {
