@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     ports:
       - "5430:5432"
     restart: unless-stopped
@@ -23,4 +23,6 @@ services:
   #   depends_on:
   #     - postgres # Ensure postgres is running before go-fiber-app
   #   restart: unless-stopped
-  #
+
+volumes:
+  postgres_data:
