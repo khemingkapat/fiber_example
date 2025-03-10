@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-var jwtSecretKey string = "mysecretkey"
+var JWTSecretKey string = "mysecretkey"
 
 func CreateUser(db *gorm.DB, user *object.User) error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
