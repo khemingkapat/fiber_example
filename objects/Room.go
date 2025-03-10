@@ -15,3 +15,12 @@ type Room struct {
 	Building   Building `gorm:"foreignKey:BuildingID" json:"building,omitempty"`
 	Tenant     *User    `gorm:"foreignKey:TenantID" json:"tenant,omitempty"`
 }
+
+type RoomTenant struct {
+	ID          uint    `json:"id"`
+	RoomNumber  string  `json:"room_number"`
+	Size        float64 `json:"size"`
+	Type        string  `json:"type"`
+	TenantName  string  `json:"tenant_name"`  // Tenant's name
+	TenantEmail string  `json:"tenant_email"` // Tenant's email
+}
