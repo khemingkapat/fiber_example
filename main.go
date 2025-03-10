@@ -35,9 +35,8 @@ func main() {
 		return handlers.GetRoomByTenantIDHandler(db)(c)
 	})
 
-	rooms.Get("/:id", auth.ManagerOnlyMiddleware, handlers.GetRoomHandler(db)) // Get a specific room by ID (for managers)
-
 	rooms.Get("/tenant", auth.ManagerOnlyMiddleware, handlers.GetRoomWithTenantHandler(db)) // Get rooms with tenant (for managers)
+	rooms.Get("/:id", auth.ManagerOnlyMiddleware, handlers.GetRoomHandler(db))              // Get a specific room by ID (for managers)
 
 	// Start the server
 	app.Listen(":8080")
